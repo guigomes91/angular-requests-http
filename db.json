@@ -3,6 +3,14 @@
     {
       "id": 1,
       "nome": "angular"
+    },
+    {
+      "id": 2,
+      "nome": "java"
+    },
+    {
+      "id": 3,
+      "nome": "python"
     }
   ]
 }
