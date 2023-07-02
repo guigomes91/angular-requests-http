@@ -11,6 +11,18 @@
     {
       "id": 3,
       "nome": "python"
+    },
+    {
+      "nome": "C++",
+      "id": 4
+    },
+    {
+      "nome": "Material v2",
+      "id": 5
+    },
+    {
+      "nome": "Java 17",
+      "id": 6
     }
   ]
 }
