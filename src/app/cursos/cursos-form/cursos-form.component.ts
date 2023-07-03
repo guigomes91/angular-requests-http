@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 import { CursosService } from '../cursos.service';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Curso } from '../curso';
+import { map, pipe, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-cursos-form',
@@ -18,11 +20,28 @@ export class CursosFormComponent implements OnInit {
     private fb: FormBuilder,
     private service: CursosService,
     private modal: AlertModalService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      const id = params['id'];
+      console.log(id);
+      const curso$ = this.service.loadById(id);
+      curso$.subscribe((curso) => {
+        this.updateForm(curso);
+      });
+    });
+
+    /*this.route.params
+    pipe(
+      map((params: any) => params['id']),
+      switchMap(id => this.service.loadById(id)))
+    .subscribe((curso: any) => this.updateForm(curso));*/
+
     this.form = this.fb.group({
+      id: [null],
       nome: [
         null,
         [
@@ -31,6 +50,13 @@ export class CursosFormComponent implements OnInit {
           Validators.maxLength(250),
         ],
       ],
+    });
+  }
+
+  updateForm(curso: any) {
+    this.form.patchValue({
+      id: curso.id,
+      nome: curso.nome,
     });
   }
 
@@ -48,7 +74,8 @@ export class CursosFormComponent implements OnInit {
           this.modal.showAlertSuccess('Curso criado com sucesso!');
           this.router.navigate(['/cursos']);
         },
-        (error) => this.modal.showAlertDanger('Erro ao criar curso, tente novamente!'),
+        (error) =>
+          this.modal.showAlertDanger('Erro ao criar curso, tente novamente!'),
         () => console.log('request completo')
       );
     }
