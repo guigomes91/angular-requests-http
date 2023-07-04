@@ -2,7 +2,7 @@
   "cursos": [
     {
       "id": 1,
-      "nome": "angular"
+      "nome": "angular 9"
     },
     {
       "id": 2,
@@ -26,7 +26,11 @@
     },
     {
       "id": 7,
-      "nome": "Aluno 0166"
+      "nome": "React Native"
+    },
+    {
+      "id": 8,
+      "nome": "Java 11"
     }
   ]
 }
