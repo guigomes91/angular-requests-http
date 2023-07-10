@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UploadFileRoutingModule } from './upload-file-routing.module';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 
 @NgModule({
@@ -14,4 +15,4 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
     UploadFileRoutingModule
   ]
 })
-export class UploadFileModule { }
+export class UploadFileModule {}
